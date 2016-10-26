@@ -101,6 +101,61 @@ public class PieMenu extends Application {
         arc4.setStroke(Color.DARKGRAY);
         arc4.setStrokeWidth(4);
 
+        canvas.getChildren().add(arc1);
+        canvas.getChildren().add(arc2);
+        canvas.getChildren().add(arc3);
+        canvas.getChildren().add(arc4);
+
+    }
+
+    public void OpenPM(MyPos pos, Integer quartier){
+        Rectangle rect1, rect2, rect3, rect4;
+        Circle circleOut, circleIn;
+        Shape arc1, arc2, arc3, arc4;
+
+        rect1 = new Rectangle(pos.x, pos.y - sizeOut, sizeOut, sizeOut);
+        rect2 = new Rectangle(pos.x - sizeOut, pos.y, sizeOut, sizeOut);
+        rect3 = new Rectangle(pos.x - sizeOut, pos.y - sizeOut, sizeOut, sizeOut);
+        rect4 = new Rectangle(pos.x, pos.y, sizeOut, sizeOut);
+
+        circleOut = new Circle(sizeOut);
+        circleOut.relocate((pos.x - sizeOut), (pos.y - sizeOut));
+        circleIn = new Circle(sizeIn);
+        circleIn.relocate((pos.x - sizeIn), (pos.y - sizeIn));
+
+        Shape donnut = Shape.subtract(circleOut, circleIn);
+
+        arc1 = Shape.intersect(donnut,rect1);
+        arc2 = Shape.intersect(donnut,rect3);
+        arc3 = Shape.intersect(donnut,rect2);
+        arc4 = Shape.intersect(donnut,rect4);
+
+        arc1.setFill(Color.LIGHTGRAY);
+        arc1.setStroke(Color.DARKGRAY);
+        arc1.setStrokeWidth(4);
+        arc2.setFill(Color.LIGHTGRAY);
+        arc2.setStroke(Color.DARKGRAY);
+        arc2.setStrokeWidth(4);
+        arc3.setFill(Color.LIGHTGRAY);
+        arc3.setStroke(Color.DARKGRAY);
+        arc3.setStrokeWidth(4);
+        arc4.setFill(Color.LIGHTGRAY);
+        arc4.setStroke(Color.DARKGRAY);
+        arc4.setStrokeWidth(4);
+
+        if(quartier == 1){
+            arc1.setFill(Color.GRAY);
+        }
+        if(quartier == 2){
+            arc2.setFill(Color.GRAY);
+        }
+        if(quartier == 3){
+            arc3.setFill(Color.GRAY);
+        }
+        if(quartier == 4){
+            arc4.setFill(Color.GRAY);
+        }
+
 
 
         canvas.getChildren().add(arc1);
@@ -166,22 +221,49 @@ public class PieMenu extends Application {
                 break;
             case Open:
                 ChangeStateFctPos(e);
+                ChangeGraphic();
                 break;
             case Suivant:
                 ChangeStateFctPos(e);
+                ChangeGraphic();
                 break;
             case Précédent:
                 ChangeStateFctPos(e);
+                ChangeGraphic();
                 break;
             case Supprimer:
                 ChangeStateFctPos(e);
+                ChangeGraphic();
                 break;
             case Modifier:
                 ChangeStateFctPos(e);
+                ChangeGraphic();
                 break;
         }
     }
 
+    public void ChangeGraphic(){
+        switch (state){
+            case Init:
+                //close PM
+                break;
+            case Open:
+                OpenPM(pmCenter);
+                break;
+            case Suivant:
+                OpenPM(pmCenter,2);
+                break;
+            case Précédent:
+                OpenPM(pmCenter,1);
+                break;
+            case Supprimer:
+                OpenPM(pmCenter,3);
+                break;
+            case Modifier:
+                OpenPM(pmCenter,4);
+                break;
+        }
+    }
 
     public MousePos getMousePos(MyPos pos){
         // retourne la position actuelle du curseur en fonction des coordonées polaire du pointeur

@@ -26,12 +26,13 @@
       <file leaf-file-name="PieMenu.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PieMenu/src/sample/PieMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="100" column="12" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="12" />
+            <state relative-caret-position="-63">
+              <caret line="128" column="45" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
               <folding>
                 <element signature="class#States#0;class#PieMenu#0" expanded="false" />
                 <element signature="class#MousePos#0;class#PieMenu#0" expanded="false" />
                 <element signature="class#MyPos#0;class#PieMenu#0" expanded="false" />
+                <element signature="method#OpenPM#0;class#PieMenu#0" expanded="false" />
                 <element signature="method#getMousePos#0;class#PieMenu#0" expanded="false" />
                 <element signature="method#ChangeStateFctPos#0;class#PieMenu#0" expanded="false" />
               </folding>
@@ -575,12 +576,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1477489097035</updated>
-      <workItem from="1477489099666" duration="5007000" />
+      <workItem from="1477489099666" duration="5667000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5007000" />
+    <option name="totallyTimeSpent" value="5667000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -617,7 +618,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -627,12 +630,13 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/PieMenu/src/sample/PieMenu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="100" column="12" selection-start-line="100" selection-start-column="12" selection-end-line="100" selection-end-column="12" />
+        <state relative-caret-position="-63">
+          <caret line="128" column="45" selection-start-line="128" selection-start-column="45" selection-end-line="128" selection-end-column="45" />
           <folding>
             <element signature="class#States#0;class#PieMenu#0" expanded="false" />
             <element signature="class#MousePos#0;class#PieMenu#0" expanded="false" />
             <element signature="class#MyPos#0;class#PieMenu#0" expanded="false" />
+            <element signature="method#OpenPM#0;class#PieMenu#0" expanded="false" />
             <element signature="method#getMousePos#0;class#PieMenu#0" expanded="false" />
             <element signature="method#ChangeStateFctPos#0;class#PieMenu#0" expanded="false" />
           </folding>
