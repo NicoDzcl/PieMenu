@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -98,10 +99,14 @@ public class PieMenu extends Application {
         arc4.setStroke(Color.DARKGRAY);
         arc4.setStrokeWidth(4);
 
-        canvas.getChildren().add(arc1);
-        canvas.getChildren().add(arc2);
-        canvas.getChildren().add(arc3);
-        canvas.getChildren().add(arc4);
+        Text txtPrec = new Text(pos.x + sizeOut/3, pos.y - sizeOut/3, "Précédent");
+        Text txtSuiv = new Text(pos.x - sizeOut/2, pos.y - sizeOut/3, "Suivant");
+        Text txtSuppr = new Text(pos.x - sizeOut/2, pos.y + sizeOut/3, "Supprimer");
+        Text txtModi = new Text(pos.x + sizeOut/3, pos.y + sizeOut/3, "Modifier");
+
+
+        canvas.getChildren().addAll(arc1,arc2,arc3,arc4);
+        canvas.getChildren().addAll(txtPrec, txtModi,txtSuiv, txtSuppr);
 
     }
 
@@ -154,11 +159,14 @@ public class PieMenu extends Application {
         }
 
 
+        Text txtPrec = new Text(pos.x + sizeOut/3, pos.y - sizeOut/3, "Précédent");
+        Text txtSuiv = new Text(pos.x - sizeOut/2, pos.y - sizeOut/3, "Suivant");
+        Text txtSuppr = new Text(pos.x - sizeOut/2, pos.y + sizeOut/3, "Supprimer");
+        Text txtModi = new Text(pos.x + sizeOut/3, pos.y + sizeOut/3, "Modifier");
 
-        canvas.getChildren().add(arc1);
-        canvas.getChildren().add(arc2);
-        canvas.getChildren().add(arc3);
-        canvas.getChildren().add(arc4);
+
+        canvas.getChildren().addAll(arc1,arc2,arc3,arc4);
+        canvas.getChildren().addAll(txtPrec, txtModi,txtSuiv, txtSuppr);
 
     }
 
