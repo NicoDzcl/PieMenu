@@ -2,19 +2,14 @@ package sample;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
-
-import java.awt.geom.Arc2D;
 
 
 public class PieMenu extends Application {
@@ -64,7 +59,9 @@ public class PieMenu extends Application {
         sizeOut = 150;
     }
 
-
+    public void ClosePM(){
+        canvas.getChildren().clear();
+    }
 
     public void OpenPM(MyPos pos){
         Rectangle rect1, rect2, rect3, rect4;
@@ -169,9 +166,16 @@ public class PieMenu extends Application {
         switch (state) {
             case Init:
                 // Rien
+                pmCenter = new MyPos(e.getX(),e.getY());
+                OpenPM(pmCenter);
+                state=States.Open;
                 break;
             case Open:
                 // Fermer PM puis Ouvrir PM
+                ClosePM();
+                pmCenter = new MyPos(e.getX(),e.getY());
+                OpenPM(pmCenter);
+                state=States.Open;
                 break;
             case Suivant:
                 // Rien
@@ -191,25 +195,36 @@ public class PieMenu extends Application {
     public void OnLeftClic(MouseEvent e){
         switch (state) {
             case Init:
-                // Ouvrir PM
-                pmCenter = new MyPos(e.getX(),e.getY());
-                OpenPM(pmCenter);
-                state=States.Open;
+                // Rien
                 break;
             case Open:
                 // Fermer PM
+                ClosePM();
+                state = States.Init;
                 break;
             case Suivant:
                 // Action Suivant
+                ClosePM();
+                System.out.println("Action Suivant");
+                state = States.Init;
                 break;
             case Précédent:
                 // Action Précédent
+                ClosePM();
+                System.out.println("Action Précédent");
+                state = States.Init;
                 break;
             case Supprimer:
-                // Action
+                // Action Supprimer
+                ClosePM();
+                System.out.println("Action Supprimer");
+                state = States.Init;
                 break;
             case Modifier:
                 // Action Modifier
+                ClosePM();
+                System.out.println("Action Modifier");
+                state = States.Init;
                 break;
         }
     }
@@ -281,19 +296,14 @@ public class PieMenu extends Application {
 
         if(distance > sizeIn & distance < sizeOut){
             if(0 < angle & angle < 90){
-                System.out.println("Q1");
                 return MousePos.Q1;}
             else if(90 < angle & angle < 180){
-                System.out.println("Q2");
                 return MousePos.Q2;}
             else if(180 < angle & angle < 270){
-                System.out.println("Q3");
                 return MousePos.Q3;}
             else if(270 < angle & angle < 360){
-                System.out.println("Q4");
                 return MousePos.Q4;}
         }
-        System.out.println("Out");
         return MousePos.Out;
     }
 
@@ -343,7 +353,6 @@ public class PieMenu extends Application {
 
     EventHandler<MouseEvent> MousePressedEventHandler =
             e -> {
-                System.out.println(e.getButton());
                 if(e.getButton() == MouseButton.PRIMARY){
                     OnLeftClic(e);
                 }
