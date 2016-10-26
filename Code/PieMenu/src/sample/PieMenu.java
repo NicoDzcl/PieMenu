@@ -10,8 +10,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
+
+import java.awt.geom.Arc2D;
 
 
 public class PieMenu extends Application {
@@ -61,15 +64,50 @@ public class PieMenu extends Application {
         sizeOut = 150;
     }
 
+
+
     public void OpenPM(MyPos pos){
-        Circle circleOut = new Circle(sizeOut, Color.BLUE);
-        circleOut.setCursor(Cursor.DEFAULT);
+        Rectangle rect1, rect2, rect3, rect4;
+        Circle circleOut, circleIn;
+        Shape arc1, arc2, arc3, arc4;
+
+        rect1 = new Rectangle(pos.x, pos.y - sizeOut, sizeOut, sizeOut);
+        rect2 = new Rectangle(pos.x - sizeOut, pos.y, sizeOut, sizeOut);
+        rect3 = new Rectangle(pos.x - sizeOut, pos.y - sizeOut, sizeOut, sizeOut);
+        rect4 = new Rectangle(pos.x, pos.y, sizeOut, sizeOut);
+
+        circleOut = new Circle(sizeOut);
         circleOut.relocate((pos.x - sizeOut), (pos.y - sizeOut));
-        Circle circleIn = new Circle(sizeIn, Color.RED);
-        circleIn.setCursor(Cursor.DEFAULT);
+        circleIn = new Circle(sizeIn);
         circleIn.relocate((pos.x - sizeIn), (pos.y - sizeIn));
-        canvas.getChildren().add(circleOut);
-        canvas.getChildren().add(circleIn);
+
+        Shape donnut = Shape.subtract(circleOut, circleIn);
+
+        arc1 = Shape.intersect(donnut,rect1);
+        arc2 = Shape.intersect(donnut,rect2);
+        arc3 = Shape.intersect(donnut,rect3);
+        arc4 = Shape.intersect(donnut,rect4);
+
+        arc1.setFill(Color.LIGHTGRAY);
+        arc1.setStroke(Color.DARKGRAY);
+        arc1.setStrokeWidth(4);
+        arc2.setFill(Color.LIGHTGRAY);
+        arc2.setStroke(Color.DARKGRAY);
+        arc2.setStrokeWidth(4);
+        arc3.setFill(Color.LIGHTGRAY);
+        arc3.setStroke(Color.DARKGRAY);
+        arc3.setStrokeWidth(4);
+        arc4.setFill(Color.LIGHTGRAY);
+        arc4.setStroke(Color.DARKGRAY);
+        arc4.setStrokeWidth(4);
+
+
+
+        canvas.getChildren().add(arc1);
+        canvas.getChildren().add(arc2);
+        canvas.getChildren().add(arc3);
+        canvas.getChildren().add(arc4);
+
     }
 
     public void OnRightClic(MouseEvent e){
@@ -127,17 +165,19 @@ public class PieMenu extends Application {
                 // rien
                 break;
             case Open:
-                double x = e.getX();
-                double y = e.getY();
-                getMousePos(new MyPos(x, y));
+                ChangeStateFctPos(e);
                 break;
             case Suivant:
+                ChangeStateFctPos(e);
                 break;
             case Précédent:
+                ChangeStateFctPos(e);
                 break;
             case Supprimer:
+                ChangeStateFctPos(e);
                 break;
             case Modifier:
+                ChangeStateFctPos(e);
                 break;
         }
     }
@@ -173,6 +213,29 @@ public class PieMenu extends Application {
         }
         System.out.println("Out");
         return MousePos.Out;
+    }
+
+    public void ChangeStateFctPos(MouseEvent e) {
+        // fonction qui change l'état de la state machine en fonction de la position du curseur
+        MyPos pos =new MyPos(e.getX(), e.getY());
+        MousePos mp = getMousePos(pos);
+        switch (mp) {
+            case Out:
+                state = States.Open;
+                break;
+            case Q1:
+                state = States.Précédent;
+                break;
+            case Q2:
+                state = States.Suivant;
+                break;
+            case Q3:
+                state = States.Supprimer;
+                break;
+            case Q4:
+                state = States.Modifier;
+                break;
+        }
     }
 
     public static void main(String[] args) {
